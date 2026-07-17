@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["'Press Start 2P'", "ui-sans-serif", "system-ui", "sans-serif"],
+              sans: ["'Pixelify Sans'", "ui-sans-serif", "system-ui", "sans-serif"]
+            },
+            colors: {
+              cream: "#FFF8F1",
+              apricot: "#FD6703",
+              blush: "#FEBED9",
+              lavender: "#F3E8FF",
+              cocoa: "#3A2723",
+              sky: "#83DDFB"
+            },
+            boxShadow: {
+              pixel: "0 0 0 3px #3A2723, 8px 8px 0 rgba(58, 39, 35, 0.16)",
+              button: "0 8px 0 #A94405, 0 18px 34px rgba(253, 103, 3, 0.22)"
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" }
+              },
+              sparkle: {
+                "0%, 100%": { opacity: ".42", transform: "scale(.9)" },
+                "50%": { opacity: "1", transform: "scale(1.12)" }
+              }
+            },
+            animation: {
+              float: "float 4s ease-in-out infinite",
+              sparkle: "sparkle 1.9s ease-in-out infinite"
+            }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body class="min-h-screen overflow-hidden bg-sky font-sans text-cocoa antialiased">
+    <main class="relative min-h-screen">
+      <img
+        src="assets/sky-prince-pixel-bg.png"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden="true"
+      />
+      <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(131,221,251,0.04)_0%,rgba(255,248,241,0.12)_54%,rgba(255,248,241,0.34)_100%)]"></div>
+
+      <div class="pointer-events-none absolute left-[21%] top-[12%] h-5 w-5 animate-sparkle bg-apricot [clip-path:polygon(50%_0,62%_38%,100%_50%,62%_62%,50%_100%,38%_62%,0_50%,38%_38%)]"></div>
+      <div class="pointer-events-none absolute right-[16%] top-[17%] h-4 w-4 animate-sparkle bg-lavender [animation-delay:600ms] [clip-path:polygon(50%_0,62%_38%,100%_50%,62%_62%,50%_100%,38%_62%,0_50%,38%_38%)]"></div>
+      <section class="absolute left-[5%] top-[7%] max-w-[760px]">
+        <p class="inline-flex border-4 border-cocoa bg-apricot px-4 py-2 font-display text-[clamp(9px,0.9vw,13px)] uppercase text-white shadow-pixel">
+          A tiny memory adventure
+        </p>
+        <h1 class="mt-5 font-display text-[clamp(42px,6.4vw,92px)] leading-[1.18] text-white drop-shadow-[8px_8px_0_rgba(58,39,35,0.82)]">
+          Birthday Quest
+        </h1>
+      </section>
+
+      <section class="absolute right-[4%] top-[30%] w-[min(430px,34vw)] min-w-[330px]">
+        <div class="relative">
+          <div class="absolute left-[16%] top-[92%] h-36 w-8 border-x-4 border-cocoa bg-[#6F3E1E] shadow-[6px_0_0_rgba(58,39,35,0.2)]"></div>
+          <div class="absolute right-[18%] top-[92%] h-36 w-8 border-x-4 border-cocoa bg-[#6F3E1E] shadow-[6px_0_0_rgba(58,39,35,0.2)]"></div>
+          <div class="relative border-4 border-cocoa bg-[#7A4A2A] p-2 shadow-pixel backdrop-blur-sm">
+            <div class="absolute -left-4 top-14 h-6 w-6 border-4 border-cocoa bg-[#D8954A]"></div>
+            <div class="absolute -right-4 top-14 h-6 w-6 border-4 border-cocoa bg-[#D8954A]"></div>
+            <div class="border-4 border-[#4F2D17] bg-[#C88745] p-4">
+          <div class="border-4 border-cocoa bg-[#FFF0C7] px-3 py-2 text-center shadow-[0_5px_0_rgba(58,39,35,0.18)]">
+            <p class="font-display text-[clamp(13px,1.2vw,18px)] leading-6 text-cocoa">MISSION BOARD</p>
+          </div>
+
+          <div class="mt-4 space-y-2 text-[clamp(16px,1.12vw,20px)] font-bold leading-6 text-[#FFF7D6] drop-shadow-[2px_2px_0_rgba(58,39,35,0.55)]">
+          <p>The Rice Kingdom needs you.</p>
+          <p>The princess was carried past the clouds by a mysterious rice spell, leaving only five secret symbols behind.</p>
+          <p>Unlock five memory gates to follow her trail.</p>
+          <p>Each gate tests a tiny piece of our story and gives you one secret symbol.</p>
+          <p>Collect them all, rescue the princess, and become the Rice King.</p>
+          </div>
+
+          <p class="mt-4 font-display text-[clamp(11px,0.95vw,15px)] leading-6 text-white drop-shadow-[2px_2px_0_rgba(58,39,35,0.7)]">READY?</p>
+
+          <a
+            href="birthday-memory-sky-pixel.html"
+            class="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-3 border-4 border-cocoa bg-apricot px-4 font-display text-[clamp(10px,0.95vw,14px)] text-white shadow-button transition active:translate-y-1 active:shadow-none"
+            aria-label="Start the birthday quest"
+          >
+            <i data-lucide="play" class="h-6 w-6" aria-hidden="true"></i>
+            Start Quest
+          </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Quest - Memory 4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["'Press Start 2P'", "ui-sans-serif", "system-ui", "sans-serif"],
+              sans: ["'Pixelify Sans'", "ui-sans-serif", "system-ui", "sans-serif"]
+            },
+            colors: { cream: "#FFF8F1", apricot: "#FD6703", lavender: "#F3E8FF", cocoa: "#3A2723" },
+            boxShadow: {
+              pixel: "0 0 0 3px #3A2723, 8px 8px 0 rgba(58,39,35,.16)",
+              button: "0 7px 0 #A94405, 0 16px 30px rgba(253,103,3,.2)"
+            },
+            keyframes: {
+              shake: { "0%,100%": { transform: "translateX(0)" }, "20%": { transform: "translateX(-8px)" }, "40%": { transform: "translateX(7px)" }, "60%": { transform: "translateX(-5px)" }, "80%": { transform: "translateX(4px)" } },
+              pop: { "0%": { opacity: "0", transform: "scale(.84)" }, "100%": { opacity: "1", transform: "scale(1)" } }
+            },
+            animation: { shake: "shake 360ms ease-in-out both", pop: "pop 360ms ease-out both" }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body class="min-h-screen overflow-hidden bg-[#1C1420] font-sans text-cocoa antialiased">
+    <main class="relative min-h-screen">
+      <img src="assets/memory-4-night-market.png" alt="" class="absolute inset-0 h-full w-full object-cover object-center" aria-hidden="true" />
+
+      <section class="absolute left-[37%] top-[31%] grid w-[40%] grid-cols-3 gap-[3%]">
+        <figure class="relative overflow-hidden border-4 border-[#7A4A2A] bg-cream p-1 shadow-pixel">
+          <div class="absolute left-2 top-2 z-10 flex h-9 w-9 items-center justify-center border-4 border-cocoa bg-apricot font-sans text-xl font-bold text-white">一</div>
+          <img src="assets/gate4-1-xiaolongbao.png" alt="Food clue one" class="aspect-[5/6] w-full object-cover object-[42%_62%]" />
+        </figure>
+        <figure class="relative overflow-hidden border-4 border-[#7A4A2A] bg-cream p-1 shadow-pixel">
+          <div class="absolute left-2 top-2 z-10 flex h-9 w-9 items-center justify-center border-4 border-cocoa bg-apricot font-sans text-xl font-bold text-white">二</div>
+          <img src="assets/gate4-2-taro.png" alt="Food clue two" class="aspect-[5/6] w-full object-cover object-[52%_64%]" />
+        </figure>
+        <figure class="relative overflow-hidden border-4 border-[#7A4A2A] bg-cream p-1 shadow-pixel">
+          <div class="absolute left-2 top-2 z-10 flex h-9 w-9 items-center justify-center border-4 border-cocoa bg-apricot font-sans text-xl font-bold text-white">三</div>
+          <img src="assets/gate4-3-beef.png" alt="Food clue three" class="aspect-[5/6] w-full object-cover object-[50%_42%]" />
+        </figure>
+      </section>
+
+      <section id="card" class="absolute bottom-[5%] right-[4%] w-[min(820px,60vw)] min-w-[500px] border-4 border-[#7A4A2A] bg-[#F4D69C] p-3 shadow-pixel">
+        <div class="relative border-4 border-[#C7944F] bg-[#FFF8F1]/96 px-6 py-5">
+          <div class="absolute -top-4 left-1/2 h-7 w-7 -translate-x-1/2 rotate-45 border-4 border-[#7A4A2A] bg-[#5A8EE8]"></div>
+          <div class="grid gap-4">
+            <div class="flex items-center gap-3">
+              <p class="shrink-0 whitespace-nowrap border-4 border-[#7A4A2A] bg-[#7A4A2A] px-4 py-2 font-display text-[clamp(9px,0.72vw,12px)] leading-5 text-white">Memory 4</p>
+              <div id="badge" class="flex h-10 w-10 shrink-0 items-center justify-center border-4 border-cocoa bg-lavender text-cocoa">
+                <i data-lucide="lock-keyhole" class="h-5 w-5" aria-hidden="true"></i>
+              </div>
+              <div class="min-w-0">
+                <h1 class="font-sans text-[clamp(30px,2.4vw,42px)] font-bold leading-8 text-cocoa">Food order</h1>
+                <p class="mt-2 text-[clamp(16px,1.12vw,20px)] font-bold leading-6 text-cocoa/68">What order did we eat these? Answer with the Mandarin labels in order, e.g. 一二三.</p>
+              </div>
+            </div>
+            <form id="puzzle-form" class="grid gap-3 md:grid-cols-[1fr_170px] md:items-start">
+              <label for="answer" class="sr-only">Answer</label>
+              <input id="answer" name="answer" autocomplete="off" class="min-h-[50px] w-full border-4 border-[#8D7A67] bg-white px-4 font-sans text-[clamp(22px,1.55vw,28px)] font-bold text-cocoa outline-none transition placeholder:text-cocoa/35 focus:border-apricot" placeholder="" aria-describedby="error success" />
+              <button type="submit" class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 border-4 border-[#7A4A2A] bg-[#F8A35B] px-4 font-display text-[clamp(10px,0.82vw,13px)] text-cocoa shadow-button transition active:translate-y-1 active:shadow-none" aria-label="Unlock the fourth clue">
+                <i data-lucide="key-round" class="h-4 w-4" aria-hidden="true"></i>
+                Unlock
+              </button>
+            </form>
+          </div>
+          <p id="error" class="mt-2 hidden border-4 border-cocoa bg-lavender px-4 py-2 font-sans text-lg font-bold text-cocoa" aria-live="polite"></p>
+          <div id="success" class="mt-2 hidden border-4 border-cocoa bg-[#FFF0E6] p-3" aria-live="polite">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex items-center gap-4">
+              <div class="flex h-12 min-w-24 items-center justify-center border-4 border-cocoa bg-apricot px-3 font-sans text-xl font-bold text-white">ㄌㄜˋ</div>
+              <div>
+                <p class="font-display text-xs leading-5 text-cocoa">Clue found</p>
+                <p class="mt-1 text-base font-bold leading-5 text-cocoa/68">Keep this piece for the final message.</p>
+              </div>
+              </div>
+              <a href="birthday-memory-final.html" class="inline-flex min-h-10 items-center justify-center border-4 border-[#7A4A2A] bg-[#F8A35B] px-4 font-display text-xs text-cocoa shadow-button">Final</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const form = document.querySelector("#puzzle-form");
+      const input = document.querySelector("#answer");
+      const card = document.querySelector("#card");
+      const badge = document.querySelector("#badge");
+      const success = document.querySelector("#success");
+      const error = document.querySelector("#error");
+      const acceptedAnswers = new Set(["二三一"]);
+      const normalizeAnswer = (value) => value.trim().replace(/\s+/g, "");
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        if (acceptedAnswers.has(normalizeAnswer(input.value))) {
+          error.classList.add("hidden");
+          success.classList.remove("hidden");
+          success.classList.add("animate-pop");
+          input.setAttribute("aria-invalid", "false");
+          badge.innerHTML = '<i data-lucide="unlock-keyhole" class="h-5 w-5" aria-hidden="true"></i>';
+          badge.classList.remove("bg-lavender");
+          badge.classList.add("bg-[#FFF0E6]", "text-apricot");
+          lucide.createIcons();
+          return;
+        }
+        success.classList.add("hidden");
+        error.textContent = "Not quite. Try again.";
+        error.classList.remove("hidden");
+        input.setAttribute("aria-invalid", "true");
+        card.classList.remove("animate-shake");
+        void card.offsetWidth;
+        card.classList.add("animate-shake");
+      };
+      form.addEventListener("submit", handleSubmit);
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

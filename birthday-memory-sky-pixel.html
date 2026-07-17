@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Quest - Memory 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["'Press Start 2P'", "ui-sans-serif", "system-ui", "sans-serif"],
+              sans: ["'Pixelify Sans'", "ui-sans-serif", "system-ui", "sans-serif"]
+            },
+            colors: {
+              cream: "#FFF8F1",
+              apricot: "#FD6703",
+              blush: "#FEBED9",
+              lavender: "#F3E8FF",
+              cocoa: "#3A2723"
+            },
+            boxShadow: {
+              pixel: "0 0 0 3px #3A2723, 8px 8px 0 rgba(58, 39, 35, 0.16)",
+              button: "0 7px 0 #A94405, 0 16px 30px rgba(253, 103, 3, 0.2)"
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" }
+              },
+              shake: {
+                "0%, 100%": { transform: "translateX(0)" },
+                "20%": { transform: "translateX(-8px)" },
+                "40%": { transform: "translateX(7px)" },
+                "60%": { transform: "translateX(-5px)" },
+                "80%": { transform: "translateX(4px)" }
+              },
+              pop: {
+                "0%": { opacity: "0", transform: "scale(.84)" },
+                "100%": { opacity: "1", transform: "scale(1)" }
+              }
+            },
+            animation: {
+              float: "float 3.8s ease-in-out infinite",
+              shake: "shake 360ms ease-in-out both",
+              pop: "pop 360ms ease-out both"
+            }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body class="min-h-screen overflow-hidden bg-[#83DDFB] font-sans text-cocoa antialiased">
+    <main class="relative min-h-screen">
+      <img
+        src="assets/memory-1-boba-day.png"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden="true"
+      />
+
+      <section id="card" class="absolute bottom-[5%] right-[4%] w-[min(820px,60vw)] min-w-[500px] border-4 border-[#7A4A2A] bg-[#F4D69C] p-3 shadow-pixel">
+        <div class="relative border-4 border-[#C7944F] bg-[#FFF8F1]/96 px-6 py-5">
+          <div class="absolute -top-4 left-1/2 h-7 w-7 -translate-x-1/2 rotate-45 border-4 border-[#7A4A2A] bg-[#5A8EE8]"></div>
+          <div class="grid gap-3">
+            <div class="flex items-center gap-3">
+              <p class="shrink-0 whitespace-nowrap border-4 border-[#7A4A2A] bg-[#7A4A2A] px-4 py-2 font-display text-[clamp(9px,0.72vw,12px)] leading-5 text-white">Memory 1</p>
+              <div id="badge" class="flex h-10 w-10 shrink-0 items-center justify-center border-4 border-cocoa bg-lavender text-cocoa">
+                <i data-lucide="lock-keyhole" class="h-5 w-5" aria-hidden="true"></i>
+              </div>
+              <div class="min-w-0">
+                <h1 class="font-sans text-[clamp(30px,2.4vw,42px)] font-bold leading-8 text-cocoa">The day we met</h1>
+                <p class="mt-1 text-[clamp(16px,1.12vw,20px)] font-bold leading-5 text-cocoa/68">Answer in Mandarin characters. Use month-day order, e.g. 六一五.</p>
+              </div>
+            </div>
+
+            <form id="puzzle-form" class="grid gap-3 md:grid-cols-[1fr_170px] md:items-start">
+              <label for="answer" class="sr-only">Answer</label>
+              <input
+                id="answer"
+                name="answer"
+                autocomplete="off"
+                class="min-h-[50px] w-full border-4 border-[#8D7A67] bg-white px-4 font-sans text-[clamp(22px,1.55vw,28px)] font-bold text-cocoa outline-none transition placeholder:text-cocoa/35 focus:border-apricot"
+                placeholder=""
+                aria-describedby="error success"
+              />
+              <button
+                type="submit"
+                class="inline-flex min-h-[50px] w-full items-center justify-center gap-2 border-4 border-[#7A4A2A] bg-[#F8A35B] px-4 font-display text-[clamp(10px,0.82vw,13px)] text-cocoa shadow-button transition active:translate-y-1 active:shadow-none"
+                aria-label="Unlock the first clue"
+              >
+                <i data-lucide="key-round" class="h-4 w-4" aria-hidden="true"></i>
+                Unlock
+              </button>
+            </form>
+            <div>
+              <button
+                id="hint-button"
+                type="button"
+                class="inline-flex min-h-9 items-center justify-center gap-2 border-4 border-[#7A4A2A] bg-lavender px-3 font-sans text-[clamp(15px,1vw,18px)] font-bold text-cocoa transition hover:bg-[#FFF0E6] active:translate-y-0.5"
+                aria-controls="hint-scroll"
+                aria-expanded="false"
+              >
+                <i data-lucide="sparkles" class="h-4 w-4" aria-hidden="true"></i>
+                Ask the princess for a hint
+              </button>
+              <div id="hint-scroll" class="mt-2 hidden border-4 border-cocoa bg-lavender px-4 py-3 font-sans text-[clamp(17px,1.16vw,21px)] font-bold leading-6 text-cocoa" aria-live="polite">
+                <p>A dusty scroll appears:</p>
+                <p class="mt-2 font-display text-[clamp(10px,0.85vw,14px)] leading-6 text-apricot">√(25⁴) + 13 × 3 - 72 ÷ 9 - 29</p>
+              </div>
+            </div>
+          </div>
+
+          <p id="error" class="mt-2 hidden border-4 border-cocoa bg-lavender px-4 py-2 font-sans text-lg font-bold text-cocoa" aria-live="polite"></p>
+
+          <div id="success" class="mt-2 hidden border-4 border-cocoa bg-[#FFF0E6] p-3" aria-live="polite">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex items-center gap-4">
+              <div class="flex h-12 min-w-28 items-center justify-center border-4 border-cocoa bg-apricot px-4 font-sans text-xl font-bold text-white">ㄕㄥ</div>
+              <div>
+                <p class="font-display text-xs leading-5 text-cocoa">Clue found</p>
+                <p class="mt-1 text-base font-bold leading-5 text-cocoa/68">Keep this piece for the final message.</p>
+              </div>
+              </div>
+              <a href="birthday-memory-2-photo.html" class="inline-flex min-h-10 items-center justify-center border-4 border-[#7A4A2A] bg-[#F8A35B] px-4 font-display text-xs text-cocoa shadow-button">Next</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p id="speech" class="sr-only">Find the first clue!</p>
+    </main>
+
+    <script>
+      const form = document.querySelector("#puzzle-form");
+      const input = document.querySelector("#answer");
+      const card = document.querySelector("#card");
+      const badge = document.querySelector("#badge");
+      const success = document.querySelector("#success");
+      const error = document.querySelector("#error");
+      const speech = document.querySelector("#speech");
+      const hintButton = document.querySelector("#hint-button");
+      const hintScroll = document.querySelector("#hint-scroll");
+      const acceptedAnswers = new Set(["六二七"]);
+
+      const normalizeAnswer = (value) => value.trim().replace(/\s+/g, "");
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const answer = normalizeAnswer(input.value);
+
+        if (acceptedAnswers.has(answer)) {
+          error.classList.add("hidden");
+          success.classList.remove("hidden");
+          success.classList.add("animate-pop");
+          input.setAttribute("aria-invalid", "false");
+          badge.innerHTML = '<i data-lucide="unlock-keyhole" class="h-6 w-6" aria-hidden="true"></i>';
+          badge.classList.remove("bg-lavender");
+          badge.classList.add("bg-[#FFF0E6]", "text-apricot");
+          speech.textContent = "ㄕㄥ collected. One piece closer!";
+          lucide.createIcons();
+          return;
+        }
+
+        success.classList.add("hidden");
+        error.textContent = "Not quite. Try again.";
+        error.classList.remove("hidden");
+        input.setAttribute("aria-invalid", "true");
+        card.classList.remove("animate-shake");
+        void card.offsetWidth;
+        card.classList.add("animate-shake");
+      };
+
+      const handleHintToggle = () => {
+        const shouldShowHint = hintScroll.classList.contains("hidden");
+        hintScroll.classList.toggle("hidden", !shouldShowHint);
+        hintButton.setAttribute("aria-expanded", String(shouldShowHint));
+      };
+
+      form.addEventListener("submit", handleSubmit);
+      hintButton.addEventListener("click", handleHintToggle);
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

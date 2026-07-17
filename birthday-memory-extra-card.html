@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Quest - Birthday Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["'Press Start 2P'", "ui-sans-serif", "system-ui", "sans-serif"],
+              sans: ["'Pixelify Sans'", "ui-sans-serif", "system-ui", "sans-serif"]
+            },
+            colors: {
+              parchment: "#F7DEAA",
+              cocoa: "#3A2723"
+            },
+            boxShadow: {
+              photo: "0 6px 0 rgba(58, 39, 35, 0.26)"
+            }
+          }
+        }
+      };
+    </script>
+  </head>
+  <body class="min-h-screen overflow-hidden bg-[#180F26] font-sans text-cocoa antialiased">
+    <main class="relative min-h-screen">
+      <img src="assets/rice-king-card-bg.png" alt="" class="absolute inset-0 h-full w-full object-cover object-center" aria-hidden="true" />
+
+      <section aria-label="Birthday photo memories">
+        <figure class="absolute left-[54.65%] top-[15.25%] h-[24.45%] w-[11.25%] overflow-hidden bg-parchment shadow-photo">
+          <img src="assets/card-photo-1.png" alt="Birthday card photo one" class="h-full w-full object-cover object-[52%_32%]" />
+        </figure>
+        <figure class="absolute left-[68.35%] top-[15.25%] h-[24.45%] w-[11.25%] overflow-hidden bg-parchment shadow-photo">
+          <img src="assets/card-photo-2.png" alt="Birthday card photo two" class="h-full w-full object-cover object-[50%_32%]" />
+        </figure>
+        <figure class="absolute left-[82.85%] top-[15.25%] h-[24.45%] w-[11.25%] overflow-hidden bg-parchment shadow-photo">
+          <img src="assets/card-photo-3.png" alt="Birthday card photo three" class="h-full w-full object-cover object-[44%_31%]" />
+        </figure>
+      </section>
+
+      <section id="birthday-message" aria-label="Birthday message" class="absolute left-[53.9%] top-[43.9%] h-[42.5%] w-[39%] rounded-sm px-[3%] py-[2.4%] text-[clamp(14px,1.08vw,20px)] font-bold leading-[1.28] text-cocoa/82">
+        <div class="space-y-[0.58em]">
+          <p>Dear 小龍,</p>
+          <p>First of all, congrats that you successfully saved the princess and became Rice King, the princess's stallion :P I hope you enjoyed this mini game I built hehe ❤</p>
+          <p>I want to thank you for your consistency and your patience all along the way. I know the road has not always been easy, and there is still more ahead, but I hope you know I'm always here for you!</p>
+          <p>I'm proud of how far you've come, and I love watching you keep trying, growing, and finding your passion in work, hobbies, and life 🎉</p>
+          <p>Cheers to your 28th, and I'm so grateful I get to share these little adventures with you.</p>
+          <p>Happy birthday ❤️</p>
+          <p>Love, Jane 珍</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
